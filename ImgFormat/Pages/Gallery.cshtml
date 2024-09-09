@@ -1,0 +1,23 @@
+@page
+@model GalleryModel
+@{
+    ViewData["title"] = "Gallery";
+}
+
+<div class="gallery">
+@{
+    foreach (var pair in Model.GetImages())
+    {
+        <img src="./@pair.Value.Thumbnail" alt="@pair.Value.Description"/>
+        <div>
+            @foreach (var file in pair.Value.Files)
+            {
+                <a href="./@Images.FileName(pair.Key, file.Item1, file.Item2)">
+                    @file.Item2 - @file.Item1
+                </a>
+                <br/>
+            }
+        </div>
+    }
+}
+</div>

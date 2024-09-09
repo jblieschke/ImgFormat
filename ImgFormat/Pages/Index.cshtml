@@ -1,0 +1,24 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["title"] = "Upload";
+}
+
+<div class="text-center">
+@{
+    if (Request.Method == "POST") {
+        Model.LogRequest(Request);
+        var status = Model.HandleRequest(Request);
+        <p> @status </p>
+    }
+}
+    <form method="post" enctype="multipart/form-data">
+        <label for="desc">Image Description</label>
+        <input type="text" id="desc" name="desc" value="" />
+        <br/>
+        <label for="image">Image (PNG or JPEG, up to 10MB)</label>
+        <input type="file" name="image" accept="image/png, image/jpeg" />
+        <br/>
+        <input type="submit" name="submit" value="Upload" />
+    </form>
+</div>
